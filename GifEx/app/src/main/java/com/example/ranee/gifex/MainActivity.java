@@ -24,6 +24,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -144,8 +146,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... params) {
-            String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
-            File outFile = new File(extStorageDirectory, "test.GIF");
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            String extStorageDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+            File imagesFolder = new File(extStorageDirectory, "Rolling");
+            imagesFolder.mkdir();
+
+            File outFile = new File(imagesFolder, "rolling_" + timeStamp + ".GIF");
             try {
                 BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(outFile));
                 bos.write(genGIF());
@@ -178,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
         private byte[] genGIF(){
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
-            GifEncoder animatedGifEncoder = new GifEncoder();
+            AnimatedGifEncoder animatedGifEncoder = new AnimatedGifEncoder();
             animatedGifEncoder.setDelay(1000);
 
             Bitmap bmFrame;
@@ -198,6 +204,11 @@ public class MainActivity extends AppCompatActivity {
             animatedGifEncoder.finish();
             return bos.toByteArray();
         }
+    }
+
+    public void onBtn4Clicked(View v) {
+        Toast.makeText(this, "Back to Menu", Toast.LENGTH_LONG).show();
+        finish();
     }
 
 }
