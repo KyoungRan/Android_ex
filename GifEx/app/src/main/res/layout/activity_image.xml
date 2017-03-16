@@ -1,22 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ranee.gifex.ImageActivity">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <Button
-        android:id="@+id/btn4"
-        android:layout_width="350dp"
-        android:layout_height="47dp"
-        android:layout_marginBottom="16dp"
+        android:id="@+id/get_images"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:text="Import your images" />
+
+    <HorizontalScrollView
+        android:id="@+id/hori_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="false"
+        android:foregroundGravity="left"
+        >
+
+        <LinearLayout
+            android:id="@+id/selected_photos_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:animateLayoutChanges="true"
+            android:gravity="left"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+
+            <!-- images will be added dynamicall to this layout -->
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="onConvertGif"
+        android:text="Convert to GIF" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="257dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
         android:onClick="onBtn4Clicked"
-        android:text="Back to Menu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="448dp" />
-</android.support.constraint.ConstraintLayout>
+        android:text="Back to Menu" />
+
+</LinearLayout>
